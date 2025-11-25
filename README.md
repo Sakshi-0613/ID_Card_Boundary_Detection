@@ -18,40 +18,6 @@ This project solves the challenging problem of precisely detecting ID card bound
 ## 🛠 Technical Pipeline
 
 ### Architecture Overview
-
-graph TD
-    %% Node Styles
-    classDef input fill:#f9f9f9,stroke:#333,stroke-width:2px;
-    classDef ai fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    classDef cv fill:#fff3e0,stroke:#e65100,stroke-width:2px;
-    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
-
-    %% Nodes
-    Start([Input Image]) --> Step1[YOLOv11 Detection<br/><i>Coarse Localization</i>]
-    
-    subgraph DL_Phase [Deep Learning Phase]
-        direction TB
-        Step1
-    end
-
-    Step1 --> Step2[Region Expansion<br/><i>25% Margin</i>]
-
-    subgraph CV_Phase [Computer Vision Refinement]
-        direction TB
-        Step2 --> Step3[Multi-scale Processing<br/><i>Downscale for Speed</i>]
-        Step3 --> Step4[GrabCut Segmentation<br/><i>Foreground Extraction</i>]
-        Step4 --> Step5[Edge Detection &<br/>Contour Analysis]
-        Step5 --> Step6[Boundary Refinement<br/><i>Geometric Fallback</i>]
-    end
-
-    Step6 --> End([Output Image<br/><i>Precise Boundary</i>])
-
-    %% Styling Application
-    class Start input;
-    class Step1 ai;
-    class Step2,Step3,Step4,Step5,Step6 cv;
-    class End output;
-
 ```
 Input Image
     ↓
@@ -117,11 +83,11 @@ cv2.grabCut(crop_small, mask, grab_rect, bgModel, fgModel, 5, cv2.GC_INIT_WITH_R
 ```
 project_root/
 ├── src/
-│   └── boundary_detector.py      # Main pipeline implementation
+│   └── detect_card_boundary.py      # Main pipeline implementation
 ├── models/
 │   └── best.pt                   # Custom YOLO model (not included)
 ├── boundary_output/              # Auto-generated output directory
-│   └── processed_images/         # Results with detected boundaries
+│   └── *processed_images*        # Results with detected boundaries
 ├── requirements.txt              # Dependencies
 └── README.md
 ```
@@ -157,15 +123,29 @@ python src/boundary_detector.py --folder path/to/images/folder/
 ### Supported Formats
 - JPEG (.jpg, .jpeg)
 - PNG (.png)
-- BMP (.bmp)
 
 ## 📊 Results
 
 The pipeline generates images with clearly marked yellow boundaries around detected ID cards, saved in the `boundary_output/` directory.
 
-**Sample Output:**
-- Input: Original image with ID card
-- Output: Same image with yellow polygonal boundary overlay
+## 📊 Visual Results & Robustness
+
+The hybrid pipeline demonstrates resilience across various real-world edge cases.
+
+| **1. Baseline Detection** | **2. Truncation Handling** |
+|:---:|:---:|
+| <img src="assets/baseline.jpg" width="350"> | <img src="assets/truncation.jpg" width="350"> |
+| *Pixel-perfect boundary on standard input* | *Robust detection even when card is partially cut off* |
+
+| **3. Occlusion Handling** | **4. Perspective Skew** |
+|:---:|:---:|
+| <img src="assets/occlusion.jpg" width="350"> | <img src="assets/skew.jpg" width="350"> |
+| *Ignores fingers using GrabCut segmentation* | *Accurate geometry on rotated/tilted cards* |
+
+| **5. High Noise / Clutter** | **6. Low Contrast** |
+|:---:|:---:|
+| <img src="assets/noise_1.jpg" width="350"> | <img src="assets/noise_2.jpg" width="350"> |
+| *Isolates card from messy, cluttered desk* | *Detects boundary despite poor lighting/contrast* |
 
 ## 🛠 Dependencies
 
@@ -230,22 +210,6 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 🎯 For Recruiters
-
-**Technical Highlights:**
-- Demonstrates practical computer vision pipeline design
-- Shows understanding of hybrid AI/traditional CV approaches
-- Includes robust error handling and optimization considerations
-- Clean, documented, and maintainable code structure
-
-**What This Project Shows:**
-- Strong problem-solving skills for real-world computer vision challenges
-- Ability to balance accuracy with computational efficiency
-- Experience with both deep learning (YOLO) and traditional CV (OpenCV)
-- Production-ready code with proper error handling and user interface
 
 ---
 
