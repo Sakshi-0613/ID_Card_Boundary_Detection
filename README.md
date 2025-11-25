@@ -96,8 +96,8 @@ project_root/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/id-card-boundary-detection.git
-cd id-card-boundary-detection
+git clone https://github.com/yourusername/ID_Card_Boundary_Detection.git
+cd ID_Card_Boundary_Detection
 ```
 
 2. **Install dependencies**
@@ -105,8 +105,57 @@ cd id-card-boundary-detection
 pip install -r requirements.txt
 ```
 
-3. **Add YOLO model**
-   - Place your trained `best.pt` model in the `models/` directory
+3. **Set up the model**
+   
+   **Option 1: Use the provided pre-trained model**
+   - The repository includes a pre-trained `best.pt` model in the `models/` directory
+
+   **Option 2: Train your own custom model**
+   ```python
+   from ultralytics import YOLO
+   
+   # Choose your model size
+   model = YOLO("yolov8n.pt")   # Fastest
+   # model = YOLO("yolov8s.pt") # Balanced  
+   # model = YOLO("yolov8m.pt") # Most accurate
+   
+   # Train with your dataset
+   model.train(
+       data="path/to/your/dataset/data.yaml",
+       epochs=50,
+       imgsz=640,
+       batch=16,
+       device=0  # Use GPU if available
+   )
+   ```
+
+### 📁 Dataset Structure for Training
+If you choose to train your own model, organize your data like this:
+```
+your_dataset/
+├── train/
+│   ├── train/          # Training images
+│   └── val/            # Validation images
+│   └── test/           # Testing images
+├── labels/
+│   ├── train/          # YOLO format labels
+│   └── val/            # YOLO format labels
+│   └── test/ 
+└── data.yaml           # Dataset configuration
+```
+
+**Sample `data.yaml`:**
+```yaml
+path:  /content/dataset  # Absolute path to dataset root
+train: images/train      # Relative path to training images
+val:   images/val        # Relative path to validation images
+test:  images/test
+
+nc: 1                    # number of classes
+names: ['id_card']       # class names
+```
+
+**Note:** The included pre-trained model works great for most ID cards, but feel free to train your own for specific card types or improved accuracy!
 
 ## 🚀 Usage
 
