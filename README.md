@@ -208,7 +208,7 @@ ultralytics>=8.0.0
 numpy>=1.21.0
 ```
 
-## ⚠️ Limitations & Honest Assessment
+## ⚠️ Known Limitations & Performance Analysis
 
 ### Current Limitations
 - **Model Dependency**: Requires custom-trained YOLO model (`best.pt`)
