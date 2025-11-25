@@ -181,19 +181,23 @@ The pipeline generates images with clearly marked yellow boundaries around detec
 
 The hybrid pipeline demonstrates resilience across various real-world edge cases.
 
+## 📊 Visual Results & Robustness
+
+The hybrid pipeline demonstrates resilience across various real-world edge cases.
+
 | **1. Baseline Detection** | **2. Truncation Handling** |
 |:---:|:---:|
-| <img src="assets/baseline.jpg" width="350"> | <img src="assets/truncation.jpg" width="350"> |
+| <img src="assets/baseline.jpg" width="250"> | <img src="assets/truncation.jpg" width="250"> |
 | *Pixel-perfect boundary on standard input* | *Robust detection even when card is partially cut off* |
 
 | **3. Occlusion Handling** | **4. Perspective Skew** |
 |:---:|:---:|
-| <img src="assets/occlusion.jpg" width="350"> | <img src="assets/skew.jpg" width="350"> |
+| <img src="assets/occulsion.jpg" width="250"> | <img src="assets/skew.jpg" width="250"> |
 | *Ignores fingers using GrabCut segmentation* | *Accurate geometry on rotated/tilted cards* |
 
 | **5. High Noise / Clutter** | **6. Low Contrast** |
 |:---:|:---:|
-| <img src="assets/noise_1.jpg" width="350"> | <img src="assets/noise_2.jpg" width="350"> |
+| <img src="assets/noise_1.jpg" width="250"> | <img src="assets/noise_2.jpg" width="250"> |
 | *Isolates card from messy, cluttered desk* | *Detects boundary despite poor lighting/contrast* |
 
 ## 🛠 Dependencies
