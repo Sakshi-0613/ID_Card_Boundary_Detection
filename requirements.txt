@@ -1,0 +1,6 @@
+ultralytics>=8.2.0
+opencv-python>=4.8.0
+numpy>=1.26.0
+torch>=2.2.0
+torchvision>=0.17.0
+matplotlib>=3.8.0
