@@ -112,12 +112,12 @@ pip install -r requirements.txt
 
 ### Single Image Processing
 ```bash
-python src/boundary_detector.py --image path/to/your/image.jpg
+python src/detect_card_boundary.py --image path/to/your/image.jpg
 ```
 
 ### Batch Processing
 ```bash
-python src/boundary_detector.py --folder path/to/images/folder/
+python src/detect_card_boundary.py --folder path/to/images/folder/
 ```
 
 ### Supported Formats
@@ -212,5 +212,3 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-
-*Built with practical computer vision applications in mind - balancing academic rigor with real-world usability.*
