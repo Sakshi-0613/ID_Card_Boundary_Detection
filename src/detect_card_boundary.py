@@ -6,7 +6,7 @@ import argparse
 
 
 def order_points(pts: np.ndarray) -> np.ndarray:
-    """Order 4 points: top-left, top-right, bottom-right, bottom-left."""
+    """Order 4 points: tl, tr, br, bl."""
     rect = np.zeros((4, 2), dtype="float32")
     s = pts.sum(axis=1)
     rect[0] = pts[np.argmin(s)]  # top-left
@@ -18,7 +18,6 @@ def order_points(pts: np.ndarray) -> np.ndarray:
 
 
 def get_model():
-    # project_root = one level above src
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     model_path = os.path.join(project_root, "models", "best.pt")
@@ -211,4 +210,5 @@ if __name__ == "__main__":
         print("\n✅ Batch processing completed!")
 
     else:
+
         print("\n!!!Please provide either --image or --folder")
