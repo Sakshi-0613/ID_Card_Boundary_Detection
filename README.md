@@ -19,6 +19,39 @@ This project solves the challenging problem of precisely detecting ID card bound
 
 ### Architecture Overview
 
+graph TD
+    %% Node Styles
+    classDef input fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef ai fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef cv fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+
+    %% Nodes
+    Start([Input Image]) --> Step1[YOLOv11 Detection<br/><i>Coarse Localization</i>]
+    
+    subgraph DL_Phase [Deep Learning Phase]
+        direction TB
+        Step1
+    end
+
+    Step1 --> Step2[Region Expansion<br/><i>25% Margin</i>]
+
+    subgraph CV_Phase [Computer Vision Refinement]
+        direction TB
+        Step2 --> Step3[Multi-scale Processing<br/><i>Downscale for Speed</i>]
+        Step3 --> Step4[GrabCut Segmentation<br/><i>Foreground Extraction</i>]
+        Step4 --> Step5[Edge Detection &<br/>Contour Analysis]
+        Step5 --> Step6[Boundary Refinement<br/><i>Geometric Fallback</i>]
+    end
+
+    Step6 --> End([Output Image<br/><i>Precise Boundary</i>])
+
+    %% Styling Application
+    class Start input;
+    class Step1 ai;
+    class Step2,Step3,Step4,Step5,Step6 cv;
+    class End output;
+
 ```
 Input Image
     ↓
