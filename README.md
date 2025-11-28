@@ -177,14 +177,6 @@ python src/detect_card_boundary.py --folder path/to/images/folder/
 
 The pipeline generates images with clearly marked yellow boundaries around detected ID cards, saved in the `boundary_output/` directory.
 
-## 📊 Visual Results & Robustness
-
-The hybrid pipeline demonstrates resilience across various real-world edge cases.
-
-## 📊 Visual Results & Robustness
-
-The hybrid pipeline demonstrates resilience across various real-world edge cases.
-
 | **1. Baseline Detection** | **2. Truncation Handling** |
 |:---:|:---:|
 | <img src="assets/baseline.jpg" width="150"> | <img src="assets/truncation.jpg" width="150"> |
