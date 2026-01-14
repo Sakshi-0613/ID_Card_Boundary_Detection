@@ -247,3 +247,11 @@ numpy>=1.21.0
    - OCR integration for text extraction
    - Quality assessment metrics
    - Web interface for easy usage
+
+## 📄 License
+
+This project is licensed under the Apache License 2.0.
+
+### Dataset Notice
+This project was developed using the MIDV-500 dataset.
+The dataset is **not included** in this repository and is subject to its own license and access restrictions.
