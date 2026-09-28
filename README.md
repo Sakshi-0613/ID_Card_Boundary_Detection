@@ -96,7 +96,7 @@ project_root/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/ID_Card_Boundary_Detection.git
+git clone https://github.com/Sakshi-0613/ID_Card_Boundary_Detection.git
 cd ID_Card_Boundary_Detection
 ```
 
